@@ -2,16 +2,15 @@
 
 A page item where users sign with a mouse, finger or pen, or type their name, and the signature is saved as an image.
 
-![Signature Pad](screenshots/preview.png)
+[![Live demo](https://img.shields.io/badge/Live_demo-0f7b72?style=for-the-badge)](https://oracleapex.com/ords/r/aamirkhanz/plugins/signature-pad) &nbsp; Sign in as `demo` with the password `Demo`.
 
-**[Live demo](https://oracleapex.com/ords/r/aamirkhanz/plugins/signature-pad)**: sign in as `demo` with the password `Demo`.
+![Signature Pad](screenshots/preview.png)
 
 | | |
 |---|---|
 | **Type** | Item plug-in |
 | **Internal name** | `COM.TECHREVX.SIGNATURE_PAD` |
 | **Version** | 1.0 |
-| **Live demo** | [oracleapex.com/ords/r/aamirkhanz/plugins/signature-pad](https://oracleapex.com/ords/r/aamirkhanz/plugins/signature-pad) (user `demo`, password `Demo`) |
 | **Requires** | Oracle APEX 26.2 or later |
 | **License** | MIT |
 
