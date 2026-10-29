@@ -1,0 +1,140 @@
+/* Signature Pad item plug-in (TechRevX, www.techrevx.com) */
+.tx-Sig {
+  --tx-sig-line: var(--a-field-input-border-color, var(--ut-field-border-color, rgba(0, 0, 0, .18)));
+  --tx-sig-text: var(--ut-component-text-default-color, #1f2333);
+  --tx-sig-muted: var(--ut-component-text-muted-color, #6b7080);
+  --tx-sig-accent: var(--ut-palette-primary, #3442a8);
+  width: 100%;
+  min-width: 0;
+}
+
+.tx-Sig-area {
+  --tx-sig-paper: var(--a-field-input-background-color, var(--ut-field-background-color, #fff));
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--tx-sig-line);
+  border-radius: var(--a-field-input-border-radius, 6px);
+  background: var(--tx-sig-paper);
+  cursor: crosshair;
+  transition: border-color .15s, box-shadow .15s;
+}
+/* Responsive sizing: full width, 2:1 on narrow screens, Height (inline max-height) on wide ones */
+/* an explicit width: with width auto, max-height would also cap the width through the aspect ratio */
+.tx-Sig-area--responsive { width: 100%; aspect-ratio: 2 / 1; min-height: 120px; }
+.tx-Sig.is-drawing .tx-Sig-area,
+.tx-Sig-area:focus-within { border-color: var(--tx-sig-accent); box-shadow: 0 0 0 1px var(--tx-sig-accent); }
+.tx-Sig-canvas { position: absolute; inset: 0; display: block; outline: none; }
+
+/* baseline with an x, like a paper form; 72% matches LINE_AT in signature-pad.js */
+.tx-Sig-line {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  top: 72%;
+  border-top: 1.5px solid color-mix(in srgb, var(--tx-sig-text) 30%, transparent);
+  pointer-events: none;
+}
+.tx-Sig-line::before {
+  content: "\00d7";
+  position: absolute;
+  left: 2px;
+  bottom: 4px;
+  color: color-mix(in srgb, var(--tx-sig-text) 45%, transparent);
+  font-size: 20px;
+  line-height: 1;
+}
+.tx-Sig-placeholder {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--tx-sig-muted);
+  font-size: 13px;
+  text-align: center;
+  pointer-events: none;
+}
+.tx-Sig-area.has-line .tx-Sig-placeholder { top: calc(72% + 8px); transform: none; }
+.tx-Sig-placeholder[hidden] { display: none; }
+
+.tx-Sig-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 2px; margin-top: 4px; }
+.tx-Sig-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 30px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--tx-sig-muted);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.tx-Sig-btn:hover:not(:disabled) { background: color-mix(in srgb, var(--tx-sig-text) 8%, transparent); color: var(--tx-sig-text); }
+.tx-Sig-btn:focus-visible { outline: 2px solid var(--tx-sig-accent); outline-offset: 1px; }
+.tx-Sig-btn:disabled { opacity: .45; cursor: default; }
+.tx-Sig .tx-Sig-btn .fa { font-size: 13px; width: auto; }
+.tx-Sig-typeBtn[aria-expanded="true"] { color: var(--tx-sig-accent); }
+.tx-Sig-actions { display: flex; gap: 2px; margin-left: auto; }
+
+/* Pen Choices: color swatches, then line sizes drawn as dots in the current pen color */
+.tx-Sig-pen { display: flex; align-items: center; gap: 2px; padding: 0 4px; }
+.tx-Sig-swatch,
+.tx-Sig-size {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+.tx-Sig-swatch::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--tx-sig-swatch);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .12);
+}
+.tx-Sig-swatch[aria-pressed="true"]::before { box-shadow: 0 0 0 2px var(--a-field-input-background-color, #fff), 0 0 0 4px var(--tx-sig-swatch); }
+.tx-Sig-size:hover:not(:disabled),
+.tx-Sig-swatch:hover:not(:disabled) { background: color-mix(in srgb, var(--tx-sig-text) 8%, transparent); }
+.tx-Sig-size[aria-pressed="true"] { background: color-mix(in srgb, var(--tx-sig-text) 11%, transparent); }
+.tx-Sig-sizeDot { border-radius: 50%; background: var(--tx-sig-pen, var(--tx-sig-text)); }
+.tx-Sig-size--fine .tx-Sig-sizeDot { width: 4px; height: 4px; }
+.tx-Sig-size--medium .tx-Sig-sizeDot { width: 7px; height: 7px; }
+.tx-Sig-size--bold .tx-Sig-sizeDot { width: 11px; height: 11px; }
+.tx-Sig-swatch:focus-visible,
+.tx-Sig-size:focus-visible { outline: 2px solid var(--tx-sig-accent); outline-offset: 1px; }
+.tx-Sig-swatch:disabled,
+.tx-Sig-size:disabled { opacity: .45; cursor: default; }
+.tx-Sig-sep { width: 1px; height: 18px; margin: 0 4px; background: var(--tx-sig-line); }
+
+.tx-Sig-typeRow { margin-top: 4px; }
+.tx-Sig-typeRow[hidden] { display: none; }
+.tx-Sig-typeInput {
+  width: 100%;
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid var(--tx-sig-line);
+  border-radius: var(--a-field-input-border-radius, 6px);
+  background: var(--a-field-input-background-color, #fff);
+  color: var(--tx-sig-text);
+  font: inherit;
+}
+.tx-Sig-typeInput:focus { outline: 2px solid var(--tx-sig-accent); outline-offset: -1px; border-color: transparent; box-shadow: none; }
+
+.tx-Sig.is-disabled .tx-Sig-area { opacity: .6; cursor: not-allowed; }
+
+.tx-Sig--readonly { min-height: 24px; }
+.tx-Sig-image { display: block; max-width: 100%; height: auto; max-height: 160px; }
+.tx-Sig-none { color: var(--tx-sig-muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  .tx-Sig-area { transition: none; }
+}
