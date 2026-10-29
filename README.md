@@ -4,11 +4,14 @@ A page item where users sign with a mouse, finger or pen, or type their name, an
 
 ![Signature Pad](screenshots/preview.png)
 
+**[Live demo](https://oracleapex.com/ords/r/aamirkhanz/plugins/signature-pad)**: sign in as `demo` with the password `Demo`.
+
 | | |
 |---|---|
 | **Type** | Item plug-in |
 | **Internal name** | `COM.TECHREVX.SIGNATURE_PAD` |
 | **Version** | 1.0 |
+| **Live demo** | [oracleapex.com/ords/r/aamirkhanz/plugins/signature-pad](https://oracleapex.com/ords/r/aamirkhanz/plugins/signature-pad) (user `demo`, password `Demo`) |
 | **Requires** | Oracle APEX 26.2 or later |
 | **License** | MIT |
 

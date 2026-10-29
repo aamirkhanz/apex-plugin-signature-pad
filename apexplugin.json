@@ -1,7 +1,7 @@
 {
   "name": "Signature Pad",
   "version": "1.0",
-  "description": "<p>A page item where users sign with a mouse, finger or pen, or type their name, and the signature is saved as an image.</p><p>Value: an image data URL (PNG, JPEG or SVG). Set Session State Data Type to CLOB. Save it to a BLOB with apex_web_service.clobbase642blob( substr( :P1_SIGNATURE, instr( :P1_SIGNATURE, ',' ) + 1 ) ). Drawing: smooth, pressure-like lines (the faster the pen, the thinner the line), undo, clear, a signature line and a placeholder. With Pen Choices, users pick the line color and size (Fine, Medium, Bold). The pad is responsive: on narrow screens it keeps a 2:1 shape up to the Height, and the signature scales to fit when the pad changes size. Type Instead: users type their name and it is drawn in a handwriting font, so the item also works with a keyboard.</p><p>Requires Oracle APEX 26.2 or later. Documentation, updates and more plug-ins: https://www.techrevx.com</p>",
+  "description": "<p>A page item where users sign with a mouse, finger or pen, or type their name, and the signature is saved as an image.</p><p>Value: an image data URL (PNG, JPEG or SVG). Set Session State Data Type to CLOB. Save it to a BLOB with apex_web_service.clobbase642blob( substr( :P1_SIGNATURE, instr( :P1_SIGNATURE, ',' ) + 1 ) ). Drawing: smooth, pressure-like lines (the faster the pen, the thinner the line), undo, clear, a signature line and a placeholder. With Pen Choices, users pick the line color and size (Fine, Medium, Bold). The pad is responsive: on narrow screens it keeps a 2:1 shape up to the Height, and the signature scales to fit when the pad changes size. Type Instead: users type their name and it is drawn in a handwriting font, so the item also works with a keyboard.</p><p>Live demo: https://oracleapex.com/ords/r/aamirkhanz/plugins/signature-pad (user demo, password Demo).</p><p>Requires Oracle APEX 26.2 or later. Documentation, updates and more plug-ins: https://www.techrevx.com</p>",
   "keywords": [
     "oracle",
     "apex",
@@ -40,6 +40,7 @@
       "plugin": {
         "internalName": "COM.TECHREVX.SIGNATURE_PAD",
         "type": "item",
+        "demo": "https://oracleapex.com/ords/r/aamirkhanz/plugins/signature-pad",
         "previewImage": "https://raw.githubusercontent.com/aamirkhanz/apex-plugin-signature-pad/main/screenshots/preview.png"
       }
     }
